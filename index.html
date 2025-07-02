@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <title>Calculadora Simples</title>
+</head>
+<body>
+    <h1>Calculadora Simples</h1>
+
+    <label for="operacao">Escolha a operação:</label>
+    <select id="operacao">
+        <option value="soma">Soma (+)</option>
+        <option value="subtracao">Subtração (-)</option>
+        <option value="multiplicacao">Multiplicação (×)</option>
+        <option value="divisao">Divisão (÷)</option>
+    </select>
+    <br /><br />
+
+    <label for="num1">Número 1:</label>
+    <input type="number" id="num1" />
+    <br /><br />
+
+    <label for="num2">Número 2:</label>
+    <input type="number" id="num2" />
+    <br /><br />
+
+    <button onclick="calcular()">Calcular</button>
+
+    <h2 id="resultado"></h2>
+
+    <script>
+        function calcular() {
+            const op = document.getElementById('operacao').value;
+            const n1 = parseFloat(document.getElementById('num1').value);
+            const n2 = parseFloat(document.getElementById('num2').value);
+
+            if (isNaN(n1) || isNaN(n2)) {
+                alert('Por favor, insira dois números válidos.');
+                return;
+            }
+
+            let resultado;
+
+            switch (op) {
+                case 'soma':
+                    resultado = n1 + n2;
+                    break;
+                case 'subtracao':
+                    resultado = n1 - n2;
+                    break;
+                case 'multiplicacao':
+                    resultado = n1 * n2;
+                    break;
+                case 'divisao':
+                    if (n2 === 0) {
+                        alert('Divisão por zero não é permitida.');
+                        return;
+                    }
+                    resultado = n1 / n2;
+                    break;
+                default:
+                    alert('Operação inválida.');
+                    return;
+            }
+
+            document.getElementById('resultado').textContent = `Resultado: ${resultado}`;
+        }
+    </script>
+</body>
+</html>
